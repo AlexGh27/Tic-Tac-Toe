@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+
+}
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    height: 840px;
+    width: 840px;
+    background-color: gray;
+    display: grid;
+    grid: 1fr 1fr 1fr / 1fr 1fr 1fr;
+}
+
+.square {
+    height: 280px;
+    width: 280px;
+    border: 2px solid black;
+
+}
