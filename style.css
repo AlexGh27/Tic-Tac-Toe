@@ -22,5 +22,37 @@ body {
     height: 280px;
     width: 280px;
     border: 2px solid black;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
+.new_round {
+    width: 120px;
+    height: 20px;
+}
+
+.new_game {
+    width: 120px;
+    height: 20px;
+}
+
+.left_screen {
+    height: 300px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.symbolImage {
+    height: 100px;
+    width: 100px;
+    font-size: 100px;
+    background-color: transparent;
+}
+
+img {
+    background-color: transparent;
 }
