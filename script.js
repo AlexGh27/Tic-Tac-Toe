@@ -29,10 +29,12 @@ let counter = 0;
 let square = document.querySelectorAll(".square");
 square.forEach(square => {
   square.addEventListener("click", function(e) {
+    square = event.target;
     let boardString = square.id.substring(1);
     let boardIndex = Number(boardString);
     gameBoard.board[boardIndex] = symbolChooser();
     console.log(gameBoard.board);
+    drawSymbol();
     counter++;
     checkWinner();
   }, {once: true})
@@ -59,11 +61,27 @@ function checkWinner() {
       continue;
     }
     else if (firstCell == secondCell && secondCell == thirdCell) {
+      
+      if(firstCell == "X") {
+        console.log("Player 1 wins!")
+      }
+      else {
+        console.log("Player 2 wins!")
+      }
       break;
     }
   }
 }
 
+function drawSymbol(e) {
+  let cell = document.querySelectorAll(".square");
+  cell.forEach(cell => {
+    if (counter % 2 == 0) {
+      e.target.style.background = "red";
+    }
+  })
+  
+}
 
 
 
