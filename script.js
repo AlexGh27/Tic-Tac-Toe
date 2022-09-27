@@ -1,14 +1,10 @@
-
-
 const gameContainer = () => {
   let board = ["", "", "", "", "", "", "", "", ""];
-  let counter = 1;
   let symbol = "xSymbol";
-  return {board, counter, symbol};
+  return {board, symbol};
 }
 
 const gameBoard = gameContainer();
-
 
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
@@ -30,8 +26,8 @@ newRound.addEventListener("click", function(e) {
     let boardString = square.id.substring(1);
     let boardIndex = Number(boardString);
     gameBoard.board[boardIndex] = symbolChooser();
-    console.log(gameBoard.counter);
-    drawSymbol();
+
+    square.className = gameBoard.symbol;
     checkWinner();
     console.log(gameBoard.board);
     swapTurns();
@@ -75,15 +71,7 @@ function checkWinner() {
   }
 }
 
-function drawSymbol() {
-  let cell = document.querySelectorAll(".square");
-  cell.forEach(cell => {
-    cell.addEventListener("click", function(e) {
-      cell.className = gameBoard.symbol;
-    }, {once: true})
-    
-  })
-}
+
 
 function swapTurns() {
   if (gameBoard.symbol == "xSymbol") {
