@@ -1,10 +1,10 @@
-const createPlayer = (name, symbol) => {
-  return {name, symbol}
-}
+
 
 const gameContainer = () => {
   let board = ["", "", "", "", "", "", "", "", ""];
-  return {board};
+  let counter = 1;
+  let symbol = "xSymbol";
+  return {board, counter, symbol};
 }
 
 const gameBoard = gameContainer();
@@ -21,32 +21,34 @@ const WINNING_COMBINATIONS = [
   [2, 4, 6]
 ]
 
-
-let counter = 0;
-
-
-
-let square = document.querySelectorAll(".square");
-square.forEach(square => {
+const newRound = document.querySelector(".newRound");
+newRound.addEventListener("click", function(e) {
+  let square = document.querySelectorAll(".square");
+  square.forEach(square => {
   square.addEventListener("click", function(e) {
-    square = event.target;
+  
     let boardString = square.id.substring(1);
     let boardIndex = Number(boardString);
     gameBoard.board[boardIndex] = symbolChooser();
-    console.log(gameBoard.board);
+    console.log(gameBoard.counter);
     drawSymbol();
-    counter++;
     checkWinner();
+    console.log(gameBoard.board);
+    swapTurns();
   }, {once: true})
+})
 })
 
 
+
 function symbolChooser() {
-  if (counter % 2 === 0) {
+  if (gameBoard.symbol == "xSymbol") {
     return "X";
+    
   }
   else {
-    return "0";
+    return "O";
+    
   }
 }
 
@@ -62,10 +64,10 @@ function checkWinner() {
     }
     else if (firstCell == secondCell && secondCell == thirdCell) {
       
-      if(firstCell == "X") {
+      if(firstCell === "X" && secondCell === "X" && thirdCell === "X") {
         console.log("Player 1 wins!")
       }
-      else {
+      else if(firstCell === "O" && secondCell === "O" && thirdCell === "O"){
         console.log("Player 2 wins!")
       }
       break;
@@ -73,16 +75,24 @@ function checkWinner() {
   }
 }
 
-function drawSymbol(e) {
+function drawSymbol() {
   let cell = document.querySelectorAll(".square");
   cell.forEach(cell => {
-    if (counter % 2 == 0) {
-      e.target.style.background = "red";
-    }
+    cell.addEventListener("click", function(e) {
+      cell.className = gameBoard.symbol;
+    }, {once: true})
+    
   })
-  
 }
 
+function swapTurns() {
+  if (gameBoard.symbol == "xSymbol") {
+    gameBoard.symbol = "oSymbol";
+  }
+  else {
+    gameBoard.symbol = "xSymbol";
+  }
+}
 
 
 
