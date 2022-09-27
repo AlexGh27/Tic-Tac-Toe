@@ -22,12 +22,12 @@ newRound.addEventListener("click", function(e) {
   let square = document.querySelectorAll(".square");
   square.forEach(square => {
   square.addEventListener("click", function(e) {
-  
     let boardString = square.id.substring(1);
     let boardIndex = Number(boardString);
     gameBoard.board[boardIndex] = symbolChooser();
-
     square.className = gameBoard.symbol;
+    let symbolImage = addSymbolImage();
+    square.appendChild(symbolImage);
     checkWinner();
     console.log(gameBoard.board);
     swapTurns();
@@ -82,6 +82,20 @@ function swapTurns() {
   }
 }
 
-
+function addSymbolImage() {
+  if (gameBoard.symbol == "xSymbol") {
+    let symbolImage = document.createElement("img");
+    symbolImage.src = "X.png";
+    symbolImage.className = "symbolImage";
+    return symbolImage;
+  }
+  else {
+    let symbolImage = document.createElement("img");
+    symbolImage.src = "O.png";
+    symbolImage.className = "symbolImage";
+    return symbolImage;
+  }
+  
+}
 
 

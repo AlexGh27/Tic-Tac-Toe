@@ -53,6 +53,16 @@ body {
     background-color: transparent;
 }
 
-img {
-    background-color: transparent;
+
+
+.xSymbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oSymbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
