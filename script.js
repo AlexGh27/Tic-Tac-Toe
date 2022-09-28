@@ -4,6 +4,15 @@ const gameContainer = () => {
   return {board, symbol};
 }
 
+const player = () => {
+  let score = 0;
+  return {score};
+}
+
+const player1 = player;
+player1.score = 0;
+const player2 = player;
+player2.score = 0;
 const gameBoard = gameContainer();
 
 const WINNING_COMBINATIONS = [
@@ -29,7 +38,6 @@ newRound.addEventListener("click", function(e) {
     let symbolImage = addSymbolImage();
     square.appendChild(symbolImage);
     checkWinner();
-    console.log(gameBoard.board);
     swapTurns();
   }, {once: true})
 })
@@ -62,9 +70,13 @@ function checkWinner() {
       
       if(firstCell === "X" && secondCell === "X" && thirdCell === "X") {
         console.log("Player 1 wins!")
+        player1.score++;
+        document.getElementById("player1Score").innerHTML = player1.score;
       }
       else if(firstCell === "O" && secondCell === "O" && thirdCell === "O"){
         console.log("Player 2 wins!")
+        player2.score++;
+        document.getElementById("player2Score").innerHTML = player2.score;
       }
       break;
     }
@@ -98,4 +110,5 @@ function addSymbolImage() {
   
 }
 
-
+document.getElementById("player1Score").innerHTML = player1.score;
+document.getElementById("player2Score").innerHTML = player2.score;

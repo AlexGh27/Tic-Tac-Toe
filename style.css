@@ -6,7 +6,7 @@
 body {
     width: 100%;
     display: flex;
-
+    justify-content: center;
 }
 
 .left_screen {
@@ -14,7 +14,8 @@ body {
     width: 250px;
     display: flex;
     flex-direction: column;
-    margin-left: 0px;
+    margin-left: 10em;
+
 }
 
 .board {
@@ -36,14 +37,19 @@ body {
     text-align: center;
 }
 
-.new_round {
-    width: 120px;
-    height: 20px;
+.newRound {
+    width: 9em;
+    height: 5em;
+    font-size: 20px;
+    border-radius: 20px;
+    
 }
 
-.new_game {
-    width: 120px;
-    height: 20px;
+.resetScore {
+    width: 9em;
+    height: 2em;
+    font-size: 15px;
+    margin-top: 3.25em;
 }
 
 
@@ -77,6 +83,8 @@ body {
     justify-content: center;
     align-items: center;
     gap: 2em;
+    
+    margin-top: 3em;
 }
 
 .scoreboard {
@@ -88,4 +96,5 @@ body {
 .playerScore {
     height: 1em;
     width: 1em;
+    text-align: center;
 }
