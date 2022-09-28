@@ -6,23 +6,30 @@
 body {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+
+}
+
+.left_screen {
+    height: 300px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
 }
 
 .board {
-    height: 840px;
-    width: 840px;
+    height: 42em;
+    width: 42em;
     background-color: gray;
     display: grid;
-    grid: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    grid: 1fr 1fr 1fr / 1fr 1fr 1fr; 
 }
 
+
 .square {
-    height: 280px;
-    width: 280px;
+    height: 14em;
+    width: 14em;
     border: 2px solid black;
-    font-size: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,12 +46,7 @@ body {
     height: 20px;
 }
 
-.left_screen {
-    height: 300px;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-}
+
 
 .symbolImage {
     height: 100px;
@@ -65,4 +67,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.centerDiv {
+    height: 50em;
+    width: 50em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.scoreboard {
+    display: flex;
+    font-size: 20px;
+    gap: 20px;
+}
+
+.playerScore {
+    height: 1em;
+    width: 1em;
 }
