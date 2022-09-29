@@ -67,6 +67,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 14em;
+    width: 14em;
     border: 2px solid black;
     pointer-events: none;
 }
@@ -75,6 +77,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 14em;
+    width: 14em;
     border: 2px solid black;
     pointer-events: none;
 }

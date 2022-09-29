@@ -1,6 +1,5 @@
 
 
-
 const gameContainer = () => {
   let board = ["", "", "", "", "", "", "", "", ""];
   let symbol = "xSymbol";
@@ -63,6 +62,8 @@ function symbolChooser() {
 
 
 function checkWinner() {
+  document.getElementById("player1Score").innerHTML = player1.score;
+  document.getElementById("player2Score").innerHTML = player2.score;
   for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
     const combination = WINNING_COMBINATIONS[i];
     const firstCell = gameBoard.board[combination[0]];
@@ -77,22 +78,18 @@ function checkWinner() {
       if(firstCell === "X" && secondCell === "X" && thirdCell === "X") {
         console.log("Player 1 wins!")
         player1.score++;
-        console.log(player1.score);
         document.getElementById("player1Score").innerHTML = player1.score;
         gameBoard.boardContainer.style = "pointer-events: none;";
         break;
-
       }
+
       else if(firstCell === "O" && secondCell === "O" && thirdCell === "O"){
         console.log("Player 2 wins!")
         player2.score++;
         document.getElementById("player2Score").innerHTML = player2.score;
+        gameBoard.boardContainer.style = "pointer-events: none;";
         break;
-        
-
-      }
-
-      
+      } 
       
     }
   }
@@ -125,7 +122,22 @@ function addSymbolImage() {
   
 }
 
-document.getElementById("player1Score").innerHTML = player1.score;
-document.getElementById("player2Score").innerHTML = player2.score;
 
 
+let reset = document.querySelector(".resetScore");
+reset.addEventListener("click", resetScore);
+
+
+function resetScore() {
+  player1.score = 0;
+  player2.score = 0;
+  document.getElementById("player1Score").innerHTML = player1.score;
+  document.getElementById("player2Score").innerHTML = player2.score;
+}
+
+let round = document.querySelector(".newRound");
+round.addEventListener("click", newRound);
+
+function newRound() {
+  gameBoard.children.classList = "square";
+}
