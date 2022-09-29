@@ -1,7 +1,12 @@
+
+
+
 const gameContainer = () => {
   let board = ["", "", "", "", "", "", "", "", ""];
   let symbol = "xSymbol";
-  return {board, symbol};
+  const boardContainer = document.querySelector(".boardContainer");
+  const children = document.querySelectorAll(".boardContainer > div");
+  return {board, symbol, boardContainer, children};
 }
 
 const player = () => {
@@ -24,16 +29,15 @@ const WINNING_COMBINATIONS = [
   [2, 5, 8],
   [0, 4, 8],
   [2, 4, 6]
-]
+];
 
-const newRound = document.querySelector(".newRound");
-newRound.addEventListener("click", function(e) {
-  let square = document.querySelectorAll(".square");
+let square = document.querySelectorAll(".square");
   square.forEach(square => {
   square.addEventListener("click", function(e) {
     let boardString = square.id.substring(1);
     let boardIndex = Number(boardString);
     gameBoard.board[boardIndex] = symbolChooser();
+    console.log(gameBoard.board);
     square.className = gameBoard.symbol;
     let symbolImage = addSymbolImage();
     square.appendChild(symbolImage);
@@ -41,7 +45,7 @@ newRound.addEventListener("click", function(e) {
     swapTurns();
   }, {once: true})
 })
-})
+
 
 
 
@@ -55,6 +59,8 @@ function symbolChooser() {
     
   }
 }
+
+
 
 function checkWinner() {
   for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
@@ -71,14 +77,23 @@ function checkWinner() {
       if(firstCell === "X" && secondCell === "X" && thirdCell === "X") {
         console.log("Player 1 wins!")
         player1.score++;
+        console.log(player1.score);
         document.getElementById("player1Score").innerHTML = player1.score;
+        gameBoard.boardContainer.style = "pointer-events: none;";
+        break;
+
       }
       else if(firstCell === "O" && secondCell === "O" && thirdCell === "O"){
         console.log("Player 2 wins!")
         player2.score++;
         document.getElementById("player2Score").innerHTML = player2.score;
+        break;
+        
+
       }
-      break;
+
+      
+      
     }
   }
 }
@@ -112,3 +127,5 @@ function addSymbolImage() {
 
 document.getElementById("player1Score").innerHTML = player1.score;
 document.getElementById("player2Score").innerHTML = player2.score;
+
+

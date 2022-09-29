@@ -18,7 +18,7 @@ body {
 
 }
 
-.board {
+.boardContainer {
     height: 42em;
     width: 42em;
     background-color: gray;
@@ -67,12 +67,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid black;
+    pointer-events: none;
 }
 
 .oSymbol {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid black;
+    pointer-events: none;
 }
 
 .centerDiv {
@@ -97,4 +101,8 @@ body {
     height: 1em;
     width: 1em;
     text-align: center;
+}
+
+.endSquare {
+    pointer-events: none;
 }
