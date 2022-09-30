@@ -4,8 +4,8 @@ const gameContainer = () => {
   let board = ["", "", "", "", "", "", "", "", ""];
   let symbol = "xSymbol";
   const boardContainer = document.querySelector(".boardContainer");
-  const children = document.querySelectorAll(".boardContainer > div");
-  return {board, symbol, boardContainer, children};
+  
+  return {board, symbol, boardContainer,};
 }
 
 const player = () => {
@@ -42,7 +42,7 @@ let square = document.querySelectorAll(".square");
     square.appendChild(symbolImage);
     checkWinner();
     swapTurns();
-  }, {once: true})
+  })
 })
 
 
@@ -139,5 +139,15 @@ let round = document.querySelector(".newRound");
 round.addEventListener("click", newRound);
 
 function newRound() {
-  gameBoard.children.classList = "square";
+  for (let i = 0; i < 3; i++) {
+    document.querySelector("img").remove();
+  }
+  
+  for (let i = 0; i < 15; i++) {
+    document.querySelector("img").remove();
+    document.querySelector(".xSymbol").className = "square";
+    document.querySelector(".oSymbol").className = "square";  
+  }
+  
+
 }
