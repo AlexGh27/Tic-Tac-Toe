@@ -31,19 +31,27 @@ const WINNING_COMBINATIONS = [
 ];
 
 let square = document.querySelectorAll(".square");
+
+
+(function restartRound() {
+  
   square.forEach(square => {
-  square.addEventListener("click", function(e) {
-    let boardString = square.id.substring(1);
-    let boardIndex = Number(boardString);
-    gameBoard.board[boardIndex] = symbolChooser();
-    console.log(gameBoard.board);
-    square.className = gameBoard.symbol;
-    let symbolImage = addSymbolImage();
-    square.appendChild(symbolImage);
-    checkWinner();
-    swapTurns();
+    square.addEventListener("click", function(e) {
+      let boardString = square.id.substring(1);
+      let boardIndex = Number(boardString);
+      gameBoard.board[boardIndex] = symbolChooser();
+      console.log(gameBoard.board);
+      let symbolImage = gameBoard.board[boardIndex];
+      square.innerHTML = symbolImage;
+      checkWinner();
+      swapTurns();
+    })
   })
-})
+  return {square};
+})();
+
+
+
 
 
 
@@ -70,7 +78,7 @@ function checkWinner() {
     const secondCell = gameBoard.board[combination[1]];
     const thirdCell = gameBoard.board[combination[2]];
 
-    if (firstCell == "" || secondCell == "" || thirdCell == "") {
+    if (firstCell === "" || secondCell === "" || thirdCell === "") {
       continue;
     }
     else if (firstCell == secondCell && secondCell == thirdCell) {
@@ -79,7 +87,7 @@ function checkWinner() {
         console.log("Player 1 wins!")
         player1.score++;
         document.getElementById("player1Score").innerHTML = player1.score;
-        gameBoard.boardContainer.style = "pointer-events: none;";
+        square.removeEventListener("click", function(e){});
         break;
       }
 
@@ -87,7 +95,7 @@ function checkWinner() {
         console.log("Player 2 wins!")
         player2.score++;
         document.getElementById("player2Score").innerHTML = player2.score;
-        gameBoard.boardContainer.style = "pointer-events: none;";
+        square.removeEventListener("click", function(e){})
         break;
       } 
       
@@ -106,21 +114,7 @@ function swapTurns() {
   }
 }
 
-function addSymbolImage() {
-  if (gameBoard.symbol == "xSymbol") {
-    let symbolImage = document.createElement("img");
-    symbolImage.src = "X.png";
-    symbolImage.className = "symbolImage";
-    return symbolImage;
-  }
-  else {
-    let symbolImage = document.createElement("img");
-    symbolImage.src = "O.png";
-    symbolImage.className = "symbolImage";
-    return symbolImage;
-  }
-  
-}
+
 
 
 
@@ -139,15 +133,11 @@ let round = document.querySelector(".newRound");
 round.addEventListener("click", newRound);
 
 function newRound() {
-  for (let i = 0; i < 3; i++) {
-    document.querySelector("img").remove();
-  }
-  
-  for (let i = 0; i < 15; i++) {
-    document.querySelector("img").remove();
-    document.querySelector(".xSymbol").className = "square";
-    document.querySelector(".oSymbol").className = "square";  
-  }
-  
+  gameBoard.board = ["", "", "", "", "", "", "", "", ""];
+  square.forEach(square => {
+    square.innerHTML = "";
+    
+  })
 
 }
+
